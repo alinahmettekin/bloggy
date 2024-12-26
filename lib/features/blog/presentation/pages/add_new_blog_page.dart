@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:bloggy/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:bloggy/core/common/widgets/loader.dart';
+import 'package:bloggy/core/constants/constants.dart';
 import 'package:bloggy/core/theme/app_pallete.dart';
 import 'package:bloggy/core/utils/pick_image.dart';
 import 'package:bloggy/core/utils/show_snackbar.dart';
@@ -70,7 +71,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
         listener: (context, state) {
           if (state is BlogFailure) {
             showSnackbar(context, state.error);
-          } else if (state is BlogSuccess) {
+          } else if (state is BlogUploadSuccess) {
             Navigator.pushAndRemoveUntil(
               context,
               BlogPage.route(),
@@ -129,12 +130,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          'Technology',
-                          'Businnss',
-                          'Programming',
-                          'Sports',
-                        ]
+                        children: Constants.categories
                             .map(
                               (e) => Padding(
                                 padding: const EdgeInsets.all(8),

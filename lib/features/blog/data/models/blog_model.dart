@@ -1,4 +1,4 @@
-import 'package:bloggy/features/blog/domain/blog.dart';
+import 'package:bloggy/features/blog/domain/models/blog.dart';
 
 class BlogModel extends Blog {
   BlogModel({
@@ -9,6 +9,7 @@ class BlogModel extends Blog {
     required super.imageUrl,
     required super.topics,
     required super.updatedAt,
+    super.posterName,
   });
 
   Map<String, dynamic> toJson() {
@@ -19,7 +20,7 @@ class BlogModel extends Blog {
       'content': content,
       'image_url': imageUrl,
       'topics': topics,
-      'updated_at': updatedAt.millisecondsSinceEpoch,
+      'updated_at': updatedAt.toIso8601String(),
     };
   }
 
@@ -47,6 +48,7 @@ class BlogModel extends Blog {
     String? imageUrl,
     List<String>? topics,
     DateTime? updatedAt,
+    String? posterName,
   }) {
     return BlogModel(
       id: id ?? this.id,
@@ -56,6 +58,7 @@ class BlogModel extends Blog {
       imageUrl: imageUrl ?? this.imageUrl,
       topics: topics ?? this.topics,
       updatedAt: updatedAt ?? this.updatedAt,
+      posterName: posterName ?? this.posterName,
     );
   }
 }

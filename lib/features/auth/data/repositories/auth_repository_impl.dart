@@ -1,16 +1,29 @@
+import 'package:bloggy/core/constants/constants.dart';
 import 'package:bloggy/core/error/exceptions.dart';
 import 'package:bloggy/core/error/failure.dart';
+import 'package:bloggy/core/network/connection_checker.dart';
 import 'package:bloggy/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:bloggy/core/common/entities/user.dart';
+import 'package:bloggy/features/auth/data/models/user_model.dart';
 import 'package:bloggy/features/auth/domain/repository/auth_repository.dart';
 import 'package:fpdart/fpdart.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
-  AuthRepositoryImpl(this.remoteDataSource);
+  final ConnectionChecker connectionChecker;
+
+  AuthRepositoryImpl(this.remoteDataSource, this.connectionChecker);
 
   @override
   Future<Either<Failure, User>> currentUser() async {
+    if (!await connectionChecker.isConnected) {
+      final session = remoteDataSource.currentUserSession;
+      if (session == null) {
+        return left(Failure('User not logged in'));
+      }
+
+      return right(UserModel(id: session.user.id, name: '', email: ''));
+    }
     try {
       final user = await remoteDataSource.getCurrentUserData();
       if (user == null) {
@@ -54,6 +67,9 @@ class AuthRepositoryImpl implements AuthRepository {
     Future<User> Function() fn,
   ) async {
     try {
+      if (!await connectionChecker.isConnected) {
+        return left(Failure(Constants.noConnectionErrorMessage));
+      }
       final user = await fn();
 
       return right(user);

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:bloggy/core/error/failure.dart';
-import 'package:bloggy/features/blog/domain/blog.dart';
+import 'package:bloggy/features/blog/domain/models/blog.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract interface class BlogRepository {
@@ -12,4 +12,6 @@ abstract interface class BlogRepository {
     required List<String> topics,
     required String posterId,
   });
+
+  Future<Either<Failure, List<Blog>>> getAllBlogs();
 }

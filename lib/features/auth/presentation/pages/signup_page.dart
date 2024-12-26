@@ -1,12 +1,12 @@
 import 'dart:developer';
 
-import 'package:bloggy/core/common/widgets/loader.dart';
 import 'package:bloggy/core/utils/show_snackbar.dart';
 import 'package:bloggy/core/widgets/custom_field.dart';
 import 'package:bloggy/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:bloggy/features/auth/presentation/pages/login_page.dart';
 import 'package:bloggy/features/auth/presentation/widgets/auth_gradient_button.dart';
 import 'package:bloggy/features/auth/presentation/widgets/info_span.dart';
+import 'package:bloggy/features/blog/presentation/pages/blog_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,13 +35,15 @@ class _SignupPageState extends State<SignupPage> {
           listener: (context, state) {
             if (state is AuthFailure) {
               showSnackbar(context, state.message);
+            } else if (state is AuthSuccess) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                BlogPage.route(),
+                (route) => false,
+              );
             }
           },
           builder: (context, state) {
-            if (state is AuthLoading) {
-              return Loader();
-            }
-
             return Form(
               key: formKey,
               child: Column(

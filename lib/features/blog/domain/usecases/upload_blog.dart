@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:bloggy/core/error/failure.dart';
 import 'package:bloggy/core/usecase/use_case.dart';
-import 'package:bloggy/features/blog/domain/blog.dart';
+import 'package:bloggy/features/blog/domain/models/blog.dart';
 import 'package:bloggy/features/blog/domain/repositories/blog_repository.dart';
 import 'package:fpdart/fpdart.dart';
 
