@@ -49,7 +49,7 @@ This project is a modern **Flutter** application developed following the **Clean
 
    ```bash
    git clone https://github.com/alinahmettekin/bloggy.git
-   cd blog_application
+   cd bloggy
    ```
 
 2. **Install Dependencies**:
@@ -68,8 +68,12 @@ This project is a modern **Flutter** application developed following the **Clean
    ```
 
 ## Screenshots
+![Screenshot_1735229509](https://github.com/user-attachments/assets/39afe7f0-e628-4c15-b242-3edcfe6af76d)
+![Screenshot_1735229518](https://github.com/user-attachments/assets/9531e7f0-2999-476f-be47-ed7139478464)
+![Screenshot_1735229891](https://github.com/user-attachments/assets/48e54a5d-37c1-4987-9fbe-e2fa5cea139c)
+![Screenshot_1735230095](https://github.com/user-attachments/assets/4f7102ff-19a3-4b03-a3c3-0b290875b25b)
+![Screenshot_1735230135](https://github.com/user-attachments/assets/d6dc20aa-4064-44b9-967d-fd9cb172deca)
 
-> Coming soon.
 
 ## Development Process
 
